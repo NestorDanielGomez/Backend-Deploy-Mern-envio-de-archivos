@@ -2,7 +2,7 @@ import Usuario from "../models/Usuario.js";
 import bcrypt from "bcrypt";
 import { validationResult } from "express-validator";
 
-const crearUsuario = async (req, res) => {
+const crearUsuario = async (req, res, next) => {
   //muestro los errores de express-validator
   const errores = validationResult(req);
   if (!errores.isEmpty()) {

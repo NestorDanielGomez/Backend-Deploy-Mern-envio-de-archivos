@@ -1,5 +1,5 @@
 import express from "express";
-import { body, check, validationResult } from "express-validator";
+import { body } from "express-validator";
 import { crearUsuario } from "../controllers/usuarioController.js";
 
 const router = express.Router();
