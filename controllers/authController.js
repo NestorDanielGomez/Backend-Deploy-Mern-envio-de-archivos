@@ -12,8 +12,7 @@ const autenticarUsuario = async (req, res, next) => {
   const { email, password } = req.body;
 
   let usuario = await Usuario.findOne({ email });
-  console.log(usuario);
-  console.log("contraseña", password);
+
   if (!usuario) {
     res.status(401).json({ msg: "El usuario no existe" });
     return next();
@@ -28,6 +27,9 @@ const autenticarUsuario = async (req, res, next) => {
     res.status(401).json({ msg: "password incorrecto" });
   }
 };
-const usuarioAutenticado = async (req, res) => {};
+const usuarioAutenticado = async (req, res, next) => {
+  const { usuario } = req;
+  res.json({ usuario: usuario });
+};
 
 export { autenticarUsuario, usuarioAutenticado };
