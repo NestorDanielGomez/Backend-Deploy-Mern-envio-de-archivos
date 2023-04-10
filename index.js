@@ -8,7 +8,7 @@ import archivosRoutes from "./routes/archivosRoutes.js";
 import cors from "cors";
 
 const app = express();
-app.use(express.json());
+
 dotenv.config();
 
 conectarDB();
@@ -16,10 +16,14 @@ conectarDB();
 const optCors = {
   origin: process.env.FRONTEND_URL,
 };
+
 app.use(cors(optCors));
 
 console.log("comenzando...");
 const port = process.env.PORT || 4000;
+
+app.use(express.json());
+app.use(express.static("uploads"));
 
 app.use("/api/usuarios", usuarioRoutes);
 app.use("/api/auth", authRoutes);

@@ -25,11 +25,11 @@ const autenticarUsuario = async (req, res, next) => {
     res.json({ token });
   } else {
     res.status(401).json({ msg: "password incorrecto" });
+    return next();
   }
 };
 const usuarioAutenticado = async (req, res, next) => {
-  const { usuario } = req;
-  res.json({ usuario: usuario });
+  res.json({ usuario: req.usuario });
 };
 
 export { autenticarUsuario, usuarioAutenticado };
