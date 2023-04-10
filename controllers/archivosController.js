@@ -43,7 +43,6 @@ const subirArchivo = async (req, res, next) => {
 };
 
 const eliminarArchivo = (req, res) => {
-  console.log("req.archivo", req.archivo);
   try {
     const direccion = path.join(__dirname + `/../uploads/${req.archivo}`);
     fs.unlinkSync(direccion);
@@ -52,4 +51,26 @@ const eliminarArchivo = (req, res) => {
   }
 };
 
-export { subirArchivo, eliminarArchivo };
+const descargar = async (req, res, next) => {
+  const { archivo } = req.params;
+  const enlace = await Enlace.findOne({ nombre: archivo });
+  const archivoDescarga = path.join(__dirname + `/../uploads/${archivo}`);
+  res.download(archivoDescarga);
+
+  // Borrar archivo y entrada de la db
+  // Si las descargas = 1 - Borro entrada y archivo
+  const { descargas, nombre } = enlace;
+
+  if (descargas === 1) {
+    req.archivo = nombre;
+
+    await Enlace.findOneAndRemove(enlace.id);
+    next();
+  } else {
+    // si descargas > a 1 - solo usuario registrado
+    enlace.descargas--;
+    await enlace.save();
+  }
+};
+
+export { subirArchivo, eliminarArchivo, descargar };
