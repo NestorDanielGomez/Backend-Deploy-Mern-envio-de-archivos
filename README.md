@@ -32,3 +32,4 @@ Dependencias utilizadas:
 ### `npm run dev`
 
 <img src="../data-send-server/data-send.png"/>
+<img src="../data-send-server/iniciosesion.gif"/>
