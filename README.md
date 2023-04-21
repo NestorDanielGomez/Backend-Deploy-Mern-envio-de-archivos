@@ -27,9 +27,9 @@ Dependencias utilizadas:
 - [multer](https://www.npmjs.com/package/multer)
 - [shortid](https://www.npmjs.com/package/shortid)
 
-###### Correr la aplicacion:
+###### Correr la aplicación:
 
 ### `npm run dev`
 
-<img src="../data-send-server/data-send.png"/>
-<img src="../data-send-server/iniciosesion.gif"/>
+<img src="./public/data-send.png"/>
+<img src="./public/iniciosesion.gif"/>
